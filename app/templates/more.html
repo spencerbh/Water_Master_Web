@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block content %}
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-info" role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        {# application content needs to be provided in the app_content block #}
+        {% block app_content %}
+	<p>If you just cant wait for the webgame head over to <a href="https://github.com/spencerbh/allocation_game/blob/master/water_master_game_20180507.py">github</a>, grab the code, open a terminal and play our command line version today!</p>
+	<p> Learn more about <a href="https://www.greenetwork.org/basin-logix-paper">Basinlogix</a> </p>
+ 	{% endblock %}
+    </div>
+{% endblock %}
+

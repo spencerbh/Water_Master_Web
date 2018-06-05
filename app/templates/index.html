@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+   <h1>Hello WaterMaster it is year {{ year.currentyear }} of your 10 year term!</h1>
+   <p>Congratulations, you are the newest water master of San Juanito County, California. You have been elected for a ten year term of office. Your duties are to dispense water, direct farming, and buy and sell land as needed to support your citizens. Watch our for environmental requirements and drought! Water is the general currency, measured in Acre-feet (AC-FT). The following will help you in your decisions</p>
+   <p>
+   * Each citizen needs at least 0.2 AC-FT of water per year to survive<br/>
+   * Each citizen can farm at most 2 acres of land<br/>
+   * It takes 2 AC-FT of water to farm an acre of land<br/>
+   * The market price for land fluctuates yearly<br/>
+   Rule wisely and you will be showered with appreciation at the end of your term. Rule poorly and you will be thrown out of office!<br/>
+   </p>
+   <div><p><B>{{ immigrants.new_citizens }}</B> people immigrated to your county</p>
+	   <p>Your county now holds<B> {{ population.citizens }}</B> citizens </p>
+	   <p>You own<B> {{ acres.acres_owned }}</B> acres of land</p>
+	   <p>You recieved<B> {{ water_allocation.water_alotment }}</B> AC-FT from the state water project this year</p>
+	   <p>Environmental flows took<B> {{ environmentals.environmentalists }}</B> AC-FT from your stores</p>
+	   <p>You have<B> {{ water_in_storage.storage }}</B> AC-FT left in storage</p>
+	   <p>Land is trading at<B> {{ land_price.cost_per_acre }}</B> AC-FT per acre</p></div>
+
+  <h1>Use your water wisely!</h1>
+   <form action="{{url_for('index') }}" method="post">
+       {{ form.hidden_tag() }}
+       <p>
+	   {{ form.acres_to_buy_field.label }}<br>
+	   {{ form.acres_to_buy_field(size=32) }}
+       </p>
+       <p>
+	   {{ form.acres_to_sell_field.label }}<br>
+	   {{ form.acres_to_sell_field(size=32) }}
+       </p>
+       <p>
+	   {{ form.ACFT_for_citizens.label }}<br>
+	   {{ form.ACFT_for_citizens(size=32) }}
+       </p>
+       <p>
+	   {{ form.acres_to_water.label }}<br>
+	   {{ form.acres_to_water(size=32) }}
+       </p>
+       <p>{{ form.submit() }}</p>
+    </form> 
+ {% endblock %}
